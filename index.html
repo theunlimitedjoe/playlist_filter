@@ -88,11 +88,14 @@
   <div class="tag-section">
     <h3>Mood</h3>
     <div class="tags">
-      <button data-tag="Melancholy">Melancholy</button>
-      <button data-tag="Energetic">Energetic</button>
       <button data-tag="Dark">Dark</button>
-      <button data-tag="Positive">Positive</button>
+      <button data-tag="Dreamy">Dreamy</button>
+      <button data-tag="Energetic">Energetic</button>
       <button data-tag="Heavy">Heavy</button>
+      <button data-tag="Melancholy">Melancholy</button>
+      <button data-tag="Positive">Positive</button>
+      <button data-tag="Romantic">Romantic</button>
+      <button data-tag="Surreal">Surreal</button>
     </div>
   </div>
 
@@ -112,10 +115,10 @@
   <script>
     const playlists = [
       {
-        title: "Do Your Thing",
-        url: "https://tidal.com/playlist/95aea74c-f381-4430-938c-bf38f5ab92ac",
-        image: "https://resources.tidal.com/images/2b10225e/7a25/43a8/afae/f996dd8042ed/320x320.jpg",
-        tags: ["Rock", "Positive", "Some Vocals"]
+        title: "Can't Hide It",
+        url: "https://tidal.com/playlist/5f8162eb-c9e1-4a7e-b6f8-08b09e5ef2f9",
+        image: "https://resources.tidal.com/images/7fec3432/9160/4476/9cc7/a90157866bf4/320x320.jpg",
+        tags: ["Rock", "Romantic", "All Vocals"]
       },
       {
         title: "Cuties",
@@ -124,11 +127,35 @@
         tags: ["Rock", "Positive", "All Vocals"]
       },
       {
+        title: "Do Your Thing",
+        url: "https://tidal.com/playlist/95aea74c-f381-4430-938c-bf38f5ab92ac",
+        image: "https://resources.tidal.com/images/2b10225e/7a25/43a8/afae/f996dd8042ed/320x320.jpg",
+        tags: ["Rock", "Positive", "Some Vocals"]
+      },
+      {
         title: "Fight the Lonely",
         url: "https://tidal.com/playlist/325456f1-e636-4dcf-89b1-a0f77b1de2ea",
         image: "https://resources.tidal.com/images/d59bed29/d890/469f/95e7/d66be7ac8416/320x320.jpg",
         tags: ["Rock", "Melancholy", "All Vocals"]
-      }      
+      },
+      {
+        title: "Followed",
+        url: "https://tidal.com/playlist/68789925-1b0b-4258-9405-a3c42eb890ca",
+        image: "https://resources.tidal.com/images/e5c66ac9/365f/48a7/b262/785c87b6cf52/320x320.jpg",
+        tags: ["Dark", "No Vocals"]
+      },
+      {
+        title: "Nursery Sountrack",
+        url: "https://tidal.com/playlist/18cc8b3b-1216-4b58-a5ca-efdf84d64023",
+        image: "https://resources.tidal.com/images/43581102/5d6d/41d4/8d62/ae07509d856f/320x320.jpg",
+        tags: ["Ambient", "Positive", "No Vocals"]
+      },
+      {
+        title: "Planet Survey",
+        url: "https://tidal.com/playlist/f5b5bc89-bd2c-4178-9bd8-048bb0ce8327",
+        image: "https://resources.tidal.com/images/bc21130b/0d8e/469d/a328/e787d24b93a0/320x320.jpg",
+        tags: ["Ambient", "Surreal", "Some Vocals"]
+      }
     ];
 
     const buttons = document.querySelectorAll("button[data-tag]");
