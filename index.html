@@ -47,29 +47,30 @@
     }
 
     .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
       margin-top: 20px;
     }
 
     .playlist {
       display: none;
+      width: clamp(100px, 30vw, 180px);
       text-align: center;
       color: #222;
       text-decoration: none;
       font-weight: bold;
     }
 
-    .playlist img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
     .playlist.show {
       display: block;
+    }
+
+    .playlist img {
+      width: clamp(100px, 30vw, 180px);
+      height: clamp(100px, 30vw, 180px);
+      object-fit: cover;
+      border-radius: 8px;
     }
 
     #empty {
