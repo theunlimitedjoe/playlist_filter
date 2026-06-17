@@ -6,8 +6,11 @@
     body {
       font-family: Roboto, sans-serif;
       background: transparent;
+      min-height: 100%;
       margin: 0;
       padding: 20px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .tag-section {
@@ -64,26 +67,34 @@
 
     @media (max-width: 600px) {
       body {
-        padding: 12px;
+        padding: 10px;
+      }
+
+      .tag-section {
+        margin-bottom: 12px;
+      }
+
+      .tag-section h3 {
+        font-size: 15px;
       }
 
       button {
-        font-size: 14px;
-        padding: 5px 11px;
+        font-size: 13px;
+        padding: 4px 9px;
       }
 
       .grid {
-        grid-template-columns: repeat(auto-fill, minmax(95px, 95px));
-        gap: 18px 16px;
+        grid-template-columns: repeat(3, 82px);
+        gap: 14px 10px;
       }
 
       .playlist {
-        font-size: 13px;
+        font-size: 12px;
       }
 
       .playlist img {
-        width: 95px;
-        height: 95px;
+        width: 82px;
+        height: 82px;
       }
     }
     .playlist.show {
