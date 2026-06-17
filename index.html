@@ -3,17 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Roboto, sans-serif;
       background: transparent;
       margin: 0;
       padding: 20px;
+      width: 100%;
+      max-width: 100%;
     }
 
     .tag-section {
       margin-bottom: 18px;
+      max-width: 100%;
     }
 
     .tag-section h3 {
@@ -25,6 +32,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      max-width: 100%;
     }
 
     button {
@@ -35,6 +43,8 @@
       cursor: pointer;
       font-size: 16px;
       line-height: 1.2;
+      max-width: 100%;
+      white-space: normal;
     }
 
     button.active {
@@ -45,17 +55,21 @@
     .grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 18px;
       margin-top: 20px;
+      width: 100%;
+      max-width: 100%;
     }
 
     .playlist {
       display: none;
-      width: clamp(100px, 30vw, 180px);
+      width: clamp(85px, 22vw, 170px);
       text-align: center;
       color: #222;
       text-decoration: none;
       font-weight: bold;
+      font-size: clamp(12px, 2.4vw, 16px);
+      overflow-wrap: break-word;
     }
 
     .playlist.show {
@@ -63,10 +77,13 @@
     }
 
     .playlist img {
-      width: clamp(90px, 25vw, 180px);
-      height: clamp(90px, 25vw, 180px);
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      height: auto;
       object-fit: cover;
       border-radius: 8px;
+      display: block;
+      margin-bottom: 6px;
     }
 
     #empty {
