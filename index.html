@@ -104,6 +104,7 @@
       <button data-tag="Ambient">Ambient</button>
       <button data-tag="Classical">Classical</button>
       <button data-tag="Electronic">Electronic</button>
+      <button data-tag="Funk">Funk</button>
       <button data-tag="Jazz">Jazz</button>
       <button data-tag="Rock">Rock</button>
       <button data-tag="Singer-Songwriter">Singer-Songwriter</button>
@@ -207,6 +208,12 @@
         tags: ["Dark", "No Vocals"]
       },
       {
+        title: "Loose",
+        url: "https://tidal.com/playlist/d9794c7d-3b4b-4289-8376-c3a952742c32",
+        image: "https://resources.tidal.com/images/0437ad21/1d46/4b3d/ba69/802a39f0b575/320x320.jpg",
+        tags: ["Rock", "Funk", "Positive", "Some Vocals"]
+      },
+      {
         title: "My First Clone",
         url: "https://tidal.com/playlist/4048687f-6420-40a4-b425-fb8ab5f2dd50",
         image: "https://resources.tidal.com/images/c90401f5/0c91/4e53/99ef/1eb031ef50f7/320x320.jpg",
@@ -294,7 +301,7 @@
       });
 
       empty.textContent = selectedTags.length === 0
-        ? "Pick a tag to see playlists."
+        ? "Choose tag(s) to see playlists."
         : visibleCount === 0
           ? "No playlists match those tags."
           : "";
