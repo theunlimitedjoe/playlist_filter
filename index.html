@@ -3,117 +3,190 @@
 <head>
   <meta charset="UTF-8">
   <style>
-    body { font-family: Roboto, sans-serif; background: transparent; margin: 0; padding: 20px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
-    button { padding: 8px 14px; border-radius: 20px; border: 1px solid #333; background: white; cursor: pointer; }
-    button.active { background: #690f72; color: white; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 24px; }
-    .playlist { display: none; text-align: center; color: #222; text-decoration: none; font-weight: bold; }
-    .playlist img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px; }
-    .playlist.show { display: block; }
-    #empty { font-style: italic; }
+    body {
+      font-family: Roboto, sans-serif;
+      background: transparent;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .tag-section {
+      margin-bottom: 18px;
+    }
+
+    .tag-section h3 {
+      margin: 0 0 8px 0;
+      font-size: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid #333;
+      background: white;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    button.active {
+      background: #690f72;
+      color: white;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .playlist {
+      display: none;
+      text-align: center;
+      color: #222;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .playlist img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .playlist.show {
+      display: block;
+    }
+
+    #empty {
+      font-style: italic;
+      margin-top: 18px;
+    }
   </style>
 </head>
 <body>
 
-<div class="tags">
-  <h3>Genre</h3>
-  <button data-tag="Rock">Rock</button>
-  <button data-tag="Electronic">Electronic</button>
-  <button data-tag="Jazz">Jazz</button>
-  <button data-tag="Ambient">Ambient</button>
-  <button data-tag="Singer-Songwriter">Singer-Songwriter</button>
+  <div class="tag-section">
+    <h3>Genre</h3>
+    <div class="tags">
+      <button data-tag="Rock">Rock</button>
+      <button data-tag="Electronic">Electronic</button>
+      <button data-tag="Jazz">Jazz</button>
+      <button data-tag="Ambient">Ambient</button>
+      <button data-tag="Singer-Songwriter">Singer-Songwriter</button>
+    </div>
+  </div>
 
-  <h3>Mood</h3>
-  <button data-tag="Melancholy">Melancholy</button>
-  <button data-tag="Energetic">Energetic</button>
-  <button data-tag="Dark">Dark</button>
-  <button data-tag="Positive">Positive</button>
-  <button data-tag="Heavy">Heavy</button>
-    
-  <h3>Vocals</h3>
-  <button data-tag="All Vocals">All Vocals</button>
-  <button data-tag="Some Vocals">Some Vocals</button>
-  <button data-tag="No Vocals">No Vocals</button>
-  
-</div>
+  <div class="tag-section">
+    <h3>Mood</h3>
+    <div class="tags">
+      <button data-tag="Melancholy">Melancholy</button>
+      <button data-tag="Energetic">Energetic</button>
+      <button data-tag="Dark">Dark</button>
+      <button data-tag="Positive">Positive</button>
+      <button data-tag="Heavy">Heavy</button>
+    </div>
+  </div>
 
-<p id="empty">Pick a tag to see playlists.</p>
+  <div class="tag-section">
+    <h3>Vocals</h3>
+    <div class="tags">
+      <button data-tag="All Vocals">All Vocals</button>
+      <button data-tag="Some Vocals">Some Vocals</button>
+      <button data-tag="No Vocals">No Vocals</button>
+    </div>
+  </div>
 
-<div class="grid" id="playlistGrid"></div>
+  <p id="empty">Pick a tag to see playlists.</p>
 
-<script>
-  const playlists = [
-    {
-      title: "Do Your Thing",
-      url: "https://tidal.com/playlist/95aea74c-f381-4430-938c-bf38f5ab92ac",
-      image: "https://resources.tidal.com/images/2b10225e/7a25/43a8/afae/f996dd8042ed/320x320.jpg",
-      tags: ["Rock", "Positive", "Some Vocals"]
-    },
-    {
-      title: "Cuties",
-      url: "https://tidal.com/playlist/f4aabb68-7538-4dde-9046-d2e195e437ee",
-      image: "https://resources.tidal.com/images/02c75470/eaec/43d8/876e/3ab4153a7faf/320x320.jpg",
-      tags: ["Rock", "Positive", "All Vocals"]
-    }
-  ];
+  <div class="grid" id="playlistGrid"></div>
 
-  const buttons = document.querySelectorAll("button[data-tag]");
-  const grid = document.getElementById("playlistGrid");
-  const empty = document.getElementById("empty");
-  let selectedTags = [];
-
-  function renderPlaylists() {
-    grid.innerHTML = playlists.map(playlist => `
-      <a class="playlist"
-         href="${playlist.url}"
-         target="_blank"
-         data-tags="${playlist.tags.join(",")}">
-        <img src="${playlist.image}" alt="${playlist.title}">
-        <div>${playlist.title}</div>
-      </a>
-    `).join("");
-  }
-
-  renderPlaylists();
-
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      const tag = button.dataset.tag;
-
-      if (selectedTags.includes(tag)) {
-        selectedTags = selectedTags.filter(t => t !== tag);
-        button.classList.remove("active");
-      } else {
-        selectedTags.push(tag);
-        button.classList.add("active");
+  <script>
+    const playlists = [
+      {
+        title: "Do Your Thing",
+        url: "https://tidal.com/playlist/95aea74c-f381-4430-938c-bf38f5ab92ac",
+        image: "https://resources.tidal.com/images/2b10225e/7a25/43a8/afae/f996dd8042ed/320x320.jpg",
+        tags: ["Rock", "Positive", "Some Vocals"]
+      },
+      {
+        title: "Cuties",
+        url: "https://tidal.com/playlist/f4aabb68-7538-4dde-9046-d2e195e437ee",
+        image: "https://resources.tidal.com/images/02c75470/eaec/43d8/876e/3ab4153a7faf/320x320.jpg",
+        tags: ["Rock", "Positive", "All Vocals"]
       }
+      {
+        title: "Fight the Lonely",
+        url: "https://tidal.com/playlist/325456f1-e636-4dcf-89b1-a0f77b1de2ea",
+        image: "https://resources.tidal.com/images/d59bed29/d890/469f/95e7/d66be7ac8416/320x320.jpg",
+        tags: ["Rock", "Melancholy", "All Vocals"]
+      }      
+    ];
 
-      updatePlaylists();
+    const buttons = document.querySelectorAll("button[data-tag]");
+    const grid = document.getElementById("playlistGrid");
+    const empty = document.getElementById("empty");
+    let selectedTags = [];
+
+    function renderPlaylists() {
+      grid.innerHTML = playlists.map(playlist => `
+        <a class="playlist"
+           href="${playlist.url}"
+           target="_blank"
+           data-tags="${playlist.tags.join(",")}">
+          <img src="${playlist.image}" alt="${playlist.title}">
+          <div>${playlist.title}</div>
+        </a>
+      `).join("");
+    }
+
+    renderPlaylists();
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const tag = button.dataset.tag;
+
+        if (selectedTags.includes(tag)) {
+          selectedTags = selectedTags.filter(t => t !== tag);
+          button.classList.remove("active");
+        } else {
+          selectedTags.push(tag);
+          button.classList.add("active");
+        }
+
+        updatePlaylists();
+      });
     });
-  });
 
-  function updatePlaylists() {
-    const playlistCards = document.querySelectorAll(".playlist");
-    let visibleCount = 0;
+    function updatePlaylists() {
+      const playlistCards = document.querySelectorAll(".playlist");
+      let visibleCount = 0;
 
-    playlistCards.forEach(card => {
-      const tags = card.dataset.tags.split(",").map(tag => tag.trim());
+      playlistCards.forEach(card => {
+        const tags = card.dataset.tags.split(",").map(tag => tag.trim());
 
-      const matches = selectedTags.length > 0 &&
-        selectedTags.every(tag => tags.includes(tag));
+        const matches = selectedTags.length > 0 &&
+          selectedTags.every(tag => tags.includes(tag));
 
-      card.classList.toggle("show", matches);
-      if (matches) visibleCount++;
-    });
+        card.classList.toggle("show", matches);
+        if (matches) visibleCount++;
+      });
 
-    empty.textContent = selectedTags.length === 0
-      ? "Pick a tag to see playlists."
-      : visibleCount === 0
-        ? "No playlists match those tags."
-        : "";
-  }
-</script>
+      empty.textContent = selectedTags.length === 0
+        ? "Pick a tag to see playlists."
+        : visibleCount === 0
+          ? "No playlists match those tags."
+          : "";
+    }
+  </script>
 
 </body>
 </html>
