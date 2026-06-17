@@ -40,28 +40,42 @@
 
 <p id="empty">Pick a tag to see playlists.</p>
 
-<div class="grid">
+<div class="grid" id="playlistGrid"></div>
+
+<script>
   const playlists = [
     {
       title: "Do Your Thing",
       url: "https://tidal.com/playlist/95aea74c-f381-4430-938c-bf38f5ab92ac",
       image: "images/do-your-thing.jpg",
-      tags: ["Rock","Positive","All Vocals"]
+      tags: ["Rock", "Positive", "All Vocals"]
     },
     {
       title: "Cuties",
-      url: "...",
-      image: "...",
-      tags: ["Positive","All Vocals"]
+      url: "https://tidal.com/playlist/f4aabb68-7538-4dde-9046-d2e195e437ee",
+      image: "https://resources.tidal.com/images/02c75470/eaec/43d8/876e/3ab4153a7faf/1080x1080.jpg",
+      tags: ["Positive", "All Vocals"]
     }
   ];
-</div>
 
-<script>
   const buttons = document.querySelectorAll("button[data-tag]");
-  const playlists = document.querySelectorAll(".playlist");
+  const grid = document.getElementById("playlistGrid");
   const empty = document.getElementById("empty");
   let selectedTags = [];
+
+  function renderPlaylists() {
+    grid.innerHTML = playlists.map(playlist => `
+      <a class="playlist"
+         href="${playlist.url}"
+         target="_blank"
+         data-tags="${playlist.tags.join(",")}">
+        <img src="${playlist.image}" alt="${playlist.title}">
+        <div>${playlist.title}</div>
+      </a>
+    `).join("");
+  }
+
+  renderPlaylists();
 
   buttons.forEach(button => {
     button.addEventListener("click", () => {
@@ -80,14 +94,16 @@
   });
 
   function updatePlaylists() {
+    const playlistCards = document.querySelectorAll(".playlist");
     let visibleCount = 0;
 
-    playlists.forEach(playlist => {
-      const tags = playlist.dataset.tags.split(" ");
+    playlistCards.forEach(card => {
+      const tags = card.dataset.tags.split(",").map(tag => tag.trim());
+
       const matches = selectedTags.length > 0 &&
         selectedTags.every(tag => tags.includes(tag));
 
-      playlist.classList.toggle("show", matches);
+      card.classList.toggle("show", matches);
       if (matches) visibleCount++;
     });
 
