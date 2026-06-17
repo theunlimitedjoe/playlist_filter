@@ -3,7 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+  (function () {
+      const standaloneUrl = "https://theunlimitedjoe.github.io/playlist_filter/?standalone=1";
+      const isMobile = /iPhone|iPad|iPod|Android|Mobi/i.test(navigator.userAgent) || window.innerWidth < 768;
+      const isEmbedded = window.self !== window.top;
+      const isStandalone = new URLSearchParams(window.location.search).get("standalone") === "1";
 
+      if (isMobile && isEmbedded && !isStandalone) {
+        try {
+          window.top.location.href = standaloneUrl;
+        } catch (e) {
+          window.mobileRedirectFailed = true;
+        }
+      }
+    })();
+  </script>
   <style>
     * {
       box-sizing: border-box;
@@ -93,7 +108,38 @@
   </style>
 </head>
 <body>
+  <div id="mobileRedirectNotice" style="display:none; text-align:center; padding:30px 20px;">
+    <p style="font-size:18px; font-weight:bold;">
+      The playlist browser works better as its own page on mobile.
+    </p>
 
+    <a href="https://theunlimitedjoe.github.io/playlist_filter/?standalone=1"
+       target="_top"
+       style="
+         display:inline-block;
+         padding:14px 22px;
+         background:#690f72;
+         color:white;
+         text-decoration:none;
+         border-radius:24px;
+         font-weight:bold;
+         font-size:18px;
+       ">
+      Open Playlist Browser
+    </a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const isMobile = /iPhone|iPad|iPod|Android|Mobi/i.test(navigator.userAgent) || window.innerWidth < 768;
+      const isEmbedded = window.self !== window.top;
+      const isStandalone = new URLSearchParams(window.location.search).get("standalone") === "1";
+
+      if (isMobile && isEmbedded && !isStandalone) {
+        document.getElementById("mobileRedirectNotice").style.display = "block";
+      }
+    });
+  </script>
   <div class="tag-section">
     <h3>Genre</h3>
     <div class="tags">
