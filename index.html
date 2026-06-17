@@ -88,6 +88,7 @@
   <div class="tag-section">
     <h3>Mood</h3>
     <div class="tags">
+      <button data-tag="Cinematic">Cinematic</button>
       <button data-tag="Dark">Dark</button>
       <button data-tag="Dreamy">Dreamy</button>
       <button data-tag="Energetic">Energetic</button>
@@ -108,12 +109,18 @@
     </div>
   </div>
 
-  <p id="empty">Pick a tag to see playlists.</p>
+  <p id="empty">Choose tag(s) to see playlists.</p>
 
   <div class="grid" id="playlistGrid"></div>
 
   <script>
     const playlists = [
+      {
+        title: "Adventure Time Machine",
+        url: "https://tidal.com/playlist/7c8f2273-8ada-4cd1-b7ae-1be9aa010c6c",
+        image: "https://resources.tidal.com/images/c338b596/324c/4015/a687/768f3e473f49/320x320.jpg",
+        tags: ["Rock", "Electronic", "Cinematic", "Some Vocals"]
+      },
       {
         title: "Can't Hide It",
         url: "https://tidal.com/playlist/5f8162eb-c9e1-4a7e-b6f8-08b09e5ef2f9",
@@ -131,6 +138,24 @@
         url: "https://tidal.com/playlist/95aea74c-f381-4430-938c-bf38f5ab92ac",
         image: "https://resources.tidal.com/images/2b10225e/7a25/43a8/afae/f996dd8042ed/320x320.jpg",
         tags: ["Rock", "Positive", "Some Vocals"]
+      },
+      {
+        title: "Dystopian City",
+        url: "https://tidal.com/playlist/82935fcc-78c3-4e6e-8c88-1565fb776cb0",
+        image: "https://resources.tidal.com/images/f946d70a/f625/4067/9336/7393944d4168/320x320.jpg",
+        tags: ["Dark", "Jazz", "Electronic", "No Vocals"]
+      },
+      {
+        title: "End Time Prophecy",
+        url: "https://tidal.com/playlist/a8eb8a41-583d-4002-857b-f8239e7fedf7",
+        image: "https://resources.tidal.com/images/9e5f2231/9160/44e1/81dc/14e6f29de9d7/320x320.jpg",
+        tags: ["Cinematic", "Dark", "Ambient", "No Vocals"]
+      },
+      {
+        title: "Energizer Bunny Retreat",
+        url: "https://tidal.com/playlist/b6bce2bc-7fa2-4f6a-ba1b-d406005488ab",
+        image: "https://resources.tidal.com/images/851cf07b/ae1e/4708/8bd2/24d57583514f/320x320.jpg",
+        tags: ["Electronic", "No Vocals"]
       },
       {
         title: "Fight the Lonely",
@@ -155,6 +180,12 @@
         url: "https://tidal.com/playlist/f5b5bc89-bd2c-4178-9bd8-048bb0ce8327",
         image: "https://resources.tidal.com/images/bc21130b/0d8e/469d/a328/e787d24b93a0/320x320.jpg",
         tags: ["Ambient", "Surreal", "Some Vocals"]
+      },
+      {
+        title: "Still In Love",
+        url: "https://tidal.com/playlist/a8a1d5a2-1b36-4eb1-ba27-929f0d6a1ede",
+        image: "https://resources.tidal.com/images/6d9f70d4/bd89/49e5/a9ea/dadf93dddf47/320x320.jpg",
+        tags: ["Romantic", "Rock", "All Vocals"]
       }
     ];
 
