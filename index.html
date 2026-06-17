@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <script>
-  (function () {
+    (function () {
       const standaloneUrl = "https://theunlimitedjoe.github.io/playlist_filter/?standalone=1";
       const isMobile = /iPhone|iPad|iPod|Android|Mobi/i.test(navigator.userAgent) || window.innerWidth < 768;
       const isEmbedded = window.self !== window.top;
@@ -19,6 +20,7 @@
       }
     })();
   </script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -107,7 +109,9 @@
     }
   </style>
 </head>
+
 <body>
+
   <div id="mobileRedirectNotice" style="display:none; text-align:center; padding:30px 20px;">
     <p style="font-size:18px; font-weight:bold;">
       The playlist browser works better as its own page on mobile.
@@ -137,52 +141,58 @@
 
       if (isMobile && isEmbedded && !isStandalone) {
         document.getElementById("mobileRedirectNotice").style.display = "block";
+        document.getElementById("playlistContent").style.display = "none";
       }
     });
   </script>
-  <div class="tag-section">
-    <h3>Genre</h3>
-    <div class="tags">
-      <button data-tag="Ambient">Ambient</button>
-      <button data-tag="Classical">Classical</button>
-      <button data-tag="Electronic">Electronic</button>
-      <button data-tag="Folk">Folk</button>
-      <button data-tag="Funk">Funk</button>
-      <button data-tag="Jazz">Jazz</button>
-      <button data-tag="Psychedelic">Psychedelic</button>
-      <button data-tag="Rock">Rock</button>
-      <button data-tag="Singer-Songwriter">Singer-Songwriter</button>
+
+  <div id="playlistContent">
+
+    <div class="tag-section">
+      <h3>Genre</h3>
+      <div class="tags">
+        <button data-tag="Ambient">Ambient</button>
+        <button data-tag="Classical">Classical</button>
+        <button data-tag="Electronic">Electronic</button>
+        <button data-tag="Folk">Folk</button>
+        <button data-tag="Funk">Funk</button>
+        <button data-tag="Jazz">Jazz</button>
+        <button data-tag="Psychedelic">Psychedelic</button>
+        <button data-tag="Rock">Rock</button>
+        <button data-tag="Singer-Songwriter">Singer-Songwriter</button>
+      </div>
     </div>
-  </div>
 
-  <div class="tag-section">
-    <h3>Mood</h3>
-    <div class="tags">
-      <button data-tag="Cinematic">Cinematic</button>
-      <button data-tag="Dark">Dark</button>
-      <button data-tag="Dreamy">Dreamy</button>
-      <button data-tag="Energetic">Energetic</button>
-      <button data-tag="Goofy">Goofy</button>
-      <button data-tag="Heavy">Heavy</button>
-      <button data-tag="Melancholy">Melancholy</button>
-      <button data-tag="Positive">Positive</button>
-      <button data-tag="Romantic">Romantic</button>
-      <button data-tag="Surreal">Surreal</button>
+    <div class="tag-section">
+      <h3>Mood</h3>
+      <div class="tags">
+        <button data-tag="Cinematic">Cinematic</button>
+        <button data-tag="Dark">Dark</button>
+        <button data-tag="Dreamy">Dreamy</button>
+        <button data-tag="Energetic">Energetic</button>
+        <button data-tag="Goofy">Goofy</button>
+        <button data-tag="Heavy">Heavy</button>
+        <button data-tag="Melancholy">Melancholy</button>
+        <button data-tag="Positive">Positive</button>
+        <button data-tag="Romantic">Romantic</button>
+        <button data-tag="Surreal">Surreal</button>
+      </div>
     </div>
-  </div>
 
-  <div class="tag-section">
-    <h3>Vocals</h3>
-    <div class="tags">
-      <button data-tag="All Vocals">All Vocals</button>
-      <button data-tag="Some Vocals">Some Vocals</button>
-      <button data-tag="No Vocals">No Vocals</button>
+    <div class="tag-section">
+      <h3>Vocals</h3>
+      <div class="tags">
+        <button data-tag="All Vocals">All Vocals</button>
+        <button data-tag="Some Vocals">Some Vocals</button>
+        <button data-tag="No Vocals">No Vocals</button>
+      </div>
     </div>
+
+    <p id="empty">Choose tag(s) to see playlists.</p>
+
+    <div class="grid" id="playlistGrid"></div>
+
   </div>
-
-  <p id="empty">Choose tag(s) to see playlists.</p>
-
-  <div class="grid" id="playlistGrid"></div>
 
   <script>
     const playlists = [
@@ -343,7 +353,7 @@
         tags: ["Ambient", "Electronic", "Dreamy", "Surreal", "No Vocals"]
       },
       {
-        title: "Nursery Sountrack",
+        title: "Nursery Soundtrack",
         url: "https://tidal.com/playlist/18cc8b3b-1216-4b58-a5ca-efdf84d64023",
         image: "https://resources.tidal.com/images/43581102/5d6d/41d4/8d62/ae07509d856f/320x320.jpg",
         tags: ["Ambient", "Dreamy", "Positive", "No Vocals"]
@@ -403,7 +413,7 @@
         tags: ["Positive", "Rock", "All Vocals"]
       },
       {
-        title: "Twighlight Playground",
+        title: "Twilight Playground",
         url: "https://tidal.com/playlist/26a2db57-97ff-4021-8fed-b29b539eb71a",
         image: "https://resources.tidal.com/images/d36dded0/ef82/4ad0/b231/5cd43610e5bb/320x320.jpg",
         tags: ["Electronic", "Ambient", "Surreal", "Some Vocals"]
