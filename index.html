@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; background: #eee8ef; margin: 0; padding: 20px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
+    button { padding: 8px 14px; border-radius: 20px; border: 1px solid #333; background: white; cursor: pointer; }
+    button.active { background: #690f72; color: white; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 24px; }
+    .playlist { display: none; text-align: center; color: #222; text-decoration: none; font-weight: bold; }
+    .playlist img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px; }
+    .playlist.show { display: block; }
+    #empty { font-style: italic; }
+  </style>
+</head>
+<body>
+
+<div class="tags">
+  <button data-tag="Rock">Rock</button>
+  <button data-tag="Vintage">Vintage</button>
+  <button data-tag="Cozy">Cozy</button>
+  <button data-tag="Electronic">Electronic</button>
+  <button data-tag="City">City</button>
+</div>
+
+<p id="empty">Pick a tag to see playlists.</p>
+
+<div class="grid">
+  <a class="playlist" data-tags="Rock Vintage" href="TIDAL_LINK_HERE" target="_blank">
+    <img src="IMAGE_LINK_HERE">
+    <div>Do Your Thing</div>
+  </a>
+
+  <a class="playlist" data-tags="Cozy Pop Cute" href="TIDAL_LINK_HERE" target="_blank">
+    <img src="IMAGE_LINK_HERE">
+    <div>Cuties</div>
+  </a>
+
+  <a class="playlist" data-tags="Electronic City Rock" href="TIDAL_LINK_HERE" target="_blank">
+    <img src="IMAGE_LINK_HERE">
+    <div>Dystopian City</div>
+  </a>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll("button[data-tag]");
+  const playlists = document.querySelectorAll(".playlist");
+  const empty = document.getElementById("empty");
+  let selectedTags = [];
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const tag = button.dataset.tag;
+
+      if (selectedTags.includes(tag)) {
+        selectedTags = selectedTags.filter(t => t !== tag);
+        button.classList.remove("active");
+      } else {
+        selectedTags.push(tag);
+        button.classList.add("active");
+      }
+
+      updatePlaylists();
+    });
+  });
+
+  function updatePlaylists() {
+    let visibleCount = 0;
+
+    playlists.forEach(playlist => {
+      const tags = playlist.dataset.tags.split(" ");
+      const matches = selectedTags.length > 0 &&
+        selectedTags.every(tag => tags.includes(tag));
+
+      playlist.classList.toggle("show", matches);
+      if (matches) visibleCount++;
+    });
+
+    empty.textContent = selectedTags.length === 0
+      ? "Pick a tag to see playlists."
+      : visibleCount === 0
+        ? "No playlists match those tags."
+        : "";
+  }
+</script>
+
+</body>
+</html>
