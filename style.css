@@ -11,23 +11,28 @@ body {
 
 header {
   background: white;
-  padding: 16px 24px;
   border-bottom: 1px solid #ddd;
+  padding: 15px 30px;
 }
 
 nav {
   display: flex;
-  gap: 24px;
+  justify-content: center;
+  gap: 30px;
 }
 
 nav a {
-  color: #222;
+  color: black !important;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 nav a:hover {
-  color: #690f72;
+  color: #690f72 !important;
+}
+
+nav a.active {
+  color: #690f72 !important;
 }
 
 main {
