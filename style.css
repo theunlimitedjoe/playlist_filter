@@ -28,11 +28,13 @@ nav a {
 }
 
 nav a:hover {
-  color: #690f72 !important;
+  color: white !important;
+  background: #181818 !important;
 }
 
 nav a.active {
-  color: #690f72 !important;
+  color: white !important;
+  background: #181818 !important;
 }
 
 main {
