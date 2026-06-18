@@ -19,22 +19,23 @@ nav {
   display: flex;
   justify-content: center;
   gap: 30px;
+  background: #181818 !important;
 }
 
 nav a {
-  color: black !important;
+  color: white !important;
   text-decoration: none;
   font-weight: 600;
 }
 
 nav a:hover {
-  color: white !important;
-  background: #181818 !important;
+  color: #181818 !important;
+  background: white !important;
 }
 
 nav a.active {
-  color: white !important;
-  background: #181818 !important;
+  color: #181818 !important;
+  background: white !important;
 }
 
 main {
