@@ -78,6 +78,36 @@
       margin-bottom: 6px;
     }
 
+    .mobile-filters {
+      display: none;
+    }
+
+    @media (max-width: 700px) {
+      .tag-section {
+        display: none;
+      }
+
+      .mobile-filters {
+        display: block;
+        margin-bottom: 18px;
+      }
+
+      .mobile-filters label {
+        display: block;
+        font-weight: bold;
+        margin: 12px 0 5px;
+      }
+
+      .mobile-filters select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #777;
+        background: white;
+      }
+    }
+
     #empty {
       font-style: italic;
       margin-top: 18px;
@@ -98,7 +128,46 @@
 </header>
 
 <main>
+  
+  <div class="mobile-filters">
+    <label for="genreSelect">Genre</label>
+    <select id="genreSelect">
+      <option value="">Any genre</option>
+      <option value="Ambient">Ambient</option>
+      <option value="Classical">Classical</option>
+      <option value="Electronic">Electronic</option>
+      <option value="Folk">Folk</option>
+      <option value="Funk">Funk</option>
+      <option value="Jazz">Jazz</option>
+      <option value="Psychedelic">Psychedelic</option>
+      <option value="Rock">Rock</option>
+      <option value="Singer-Songwriter">Singer-Songwriter</option>
+    </select>
 
+    <label for="moodSelect">Mood</label>
+    <select id="moodSelect">
+      <option value="">Any mood</option>
+      <option value="Cinematic">Cinematic</option>
+      <option value="Dark">Dark</option>
+      <option value="Dreamy">Dreamy</option>
+      <option value="Energetic">Energetic</option>
+      <option value="Goofy">Goofy</option>
+      <option value="Heavy">Heavy</option>
+      <option value="Melancholy">Melancholy</option>
+      <option value="Positive">Positive</option>
+      <option value="Romantic">Romantic</option>
+      <option value="Surreal">Surreal</option>
+    </select>
+
+    <label for="vocalsSelect">Vocals</label>
+    <select id="vocalsSelect">
+      <option value="">Any vocals</option>
+      <option value="All Vocals">All Vocals</option>
+      <option value="Some Vocals">Some Vocals</option>
+      <option value="No Vocals">No Vocals</option>
+    </select>
+  </div>
+  
   <div class="tag-section">
     <h3>Genre</h3>
     <div class="tags">
@@ -375,6 +444,22 @@
   const grid = document.getElementById("playlistGrid");
   const empty = document.getElementById("empty");
   let selectedTags = [];
+
+  const mobileSelects = document.querySelectorAll(".mobile-filters select");
+
+  mobileSelects.forEach(select => {
+    select.addEventListener("change", () => {
+      selectedTags = Array.from(mobileSelects)
+        .map(select => select.value)
+        .filter(value => value !== "");
+
+      buttons.forEach(button => {
+        button.classList.toggle("active", selectedTags.includes(button.dataset.tag));
+      });
+
+      updatePlaylists();
+    });
+  });
 
   function renderPlaylists() {
     grid.innerHTML = playlists.map(playlist => `
