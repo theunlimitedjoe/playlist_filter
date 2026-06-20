@@ -470,6 +470,13 @@
     }
   ];
 
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
   const buttons = document.querySelectorAll("button[data-tag]");
   const grid = document.getElementById("playlistGrid");
   const empty = document.getElementById("empty");
@@ -502,7 +509,8 @@
       </a>
     `).join("");
   }
-
+  
+  shuffleArray(playlists);
   renderPlaylists();
 
   buttons.forEach(button => {
@@ -528,18 +536,18 @@
     playlistCards.forEach(card => {
       const tags = card.dataset.tags.split(",").map(tag => tag.trim());
 
-      const matches = selectedTags.length > 0 &&
+      const matches =
+        selectedTags.length === 0 ||
         selectedTags.every(tag => tags.includes(tag));
 
       card.classList.toggle("show", matches);
       if (matches) visibleCount++;
     });
 
-    empty.textContent = selectedTags.length === 0
-      ? "Choose tag(s) to see playlists."
-      : visibleCount === 0
-        ? "No playlists match those tags."
-        : "";
+      empty.textContent =
+        visibleCount === 0
+          ? "No playlists match those tags."
+          : "";
   }
 </script>
 
