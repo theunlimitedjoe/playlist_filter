@@ -5,14 +5,51 @@
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      margin-top: 20px;
-      width: 100%;
-      max-width: 100%;
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 320px));
+      gap: 32px;
       justify-content: center;
+      margin: 40px auto;
+    }
+
+    .album-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+
+      padding: 14px;
+      border: 1px solid #dddddd;
+      border-radius: 14px;
+
+      background: rgba(255,255,255,0.35);
+
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+
+      transition: transform .15s ease;
+    }
+
+    .album-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .album-card img {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .album-year {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 1.4rem;
+    }
+
+    @media (max-width: 700px) {
+      .album-grid {
+        grid-template-columns: 1fr;
+        max-width: 340px;
+      }
     }
 </style>
 </head>
@@ -31,22 +68,27 @@
 
   
 <main>
+<div class="album-grid">
 
-<p>
-2025
-<a href="https://tidal.com/album/441584887"><img src="https://resources.tidal.com/images/350d5b27/e555/447f/b66f/10c67140af4f/320x320.jpg"></a>
-2024
-<br>
-<a href="https://tidal.com/album/362156205"><img src="https://resources.tidal.com/images/5d650eb3/5da7/4538/8ae9/9b78490f8557/320x320.jpg"></a>
-2022
-<br>
-<a href="https://tidal.com/album/246035547"><img src="https://resources.tidal.com/images/ebd0f70c/6109/4cd2/bba1/384d64092fe1/320x320.jpg"></a>
-2020
-<br>
-<a href="https://softpedestal.bandcamp.com/album/big-friend"><img src="https://f4.bcbits.com/img/a297492095_1x1_700.avif" width="320"></a>
+  <a class="album-card" href="https://tidal.com/album/441584887">
+    <img src="https://resources.tidal.com/images/350d5b27/e555/447f/b66f/10c67140af4f/320x320.jpg">
+    <div class="album-year">2025</div>
+  </a>
 
+  <a class="album-card" href="https://tidal.com/album/362156205">
+    <img src="https://resources.tidal.com/images/5d650eb3/5da7/4538/8ae9/9b78490f8557/320x320.jpg">
+    <div class="album-year">2024</div>
+  </a>
 
-</p>
+  <a class="album-card" href="https://tidal.com/album/246035547">
+    <img src="https://resources.tidal.com/images/ebd0f70c/6109/4cd2/bba1/384d64092fe1/320x320.jpg">
+    <div class="album-year">2022</div>
+  </a>
+
+  <a class="album-card" href="https://softpedestal.bandcamp.com/album/big-friend">
+    <img src="https://f4.bcbits.com/img/a297492095_1x1_700.avif">
+    <div class="album-year">2020</div>
+  </a>
 
 </main>
 
