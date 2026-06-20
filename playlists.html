@@ -510,8 +510,9 @@
     `).join("");
   }
   
-  shuffleArray(playlists);
-  renderPlaylists();
+ shuffleArray(playlists);
+ renderPlaylists();
+ updatePlaylists();
 
   buttons.forEach(button => {
     button.addEventListener("click", () => {
